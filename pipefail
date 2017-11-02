@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -o pipefail
+echo "trying with pipefail set- we should see first stage failure"
+cat fred /etc/passwd 2>/dev/null | wc -l > /dev/null || echo first stage fail
+set +o pipefail
+echo "trying with pipefail unset- we should not see first stage failure"
+cat fred /etc/passwd 2>/dev/null | wc -l > /dev/null || echo first stage fail
